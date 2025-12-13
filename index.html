@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- CSS -->
-<link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Fonts -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -18,12 +18,13 @@
   <div id="nebula"></div>
   <canvas id="starfield"></canvas>
 
-  <!-- CURSOR STAR -->
-  <div id="cursor-star"></div>
-
   <!-- HEADER -->
   <header>
-    <img src="ECOMATRIX-logo.png" alt="EchoMatrix Logo" class="logo" />
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="EchoMatrix Logo">
+      <span>EchoMatrix</span>
+    </div>
+
     <nav>
       <button data-open="about">About</button>
       <button data-open="founder">Founder</button>
@@ -34,84 +35,65 @@
   </header>
 
   <!-- HERO -->
-  <section id="hero">
+  <main class="hero">
     <h1>EchoMatrix</h1>
-    <p class="tagline">
-      Computational research systems exploring emotional structure.
+    <p>
+      Computational research into emotional structure, resonance,
+      and stabilised meaning.
     </p>
-  </section>
-
-  <!-- GLYPH ORBIT -->
-  <section id="glyph-orbit">
-    <div class="glyph" data-open="about">◉</div>
-    <div class="glyph" data-open="founder">⟁</div>
-    <div class="glyph" data-open="research">✶</div>
-    <div class="glyph" data-open="funding">⬡</div>
-    <div class="glyph" data-open="contact">◌</div>
-  </section>
+  </main>
 
   <!-- OVERLAYS -->
-  <div class="overlay" id="about">
+  <section class="overlay" id="about">
     <div class="panel">
-      <h2>About EchoMatrix</h2>
+      <h2>About</h2>
       <p>
         EchoMatrix is an independent computational research initiative
-        investigating how emotional systems can be modeled, observed,
-        and stabilized through structured computation.
+        exploring emotional systems, symbolic structure, and stability
+        through mathematical and semantic modeling.
       </p>
       <button class="close">Close</button>
     </div>
-  </div>
+  </section>
 
-  <div class="overlay" id="founder">
+  <section class="overlay" id="founder">
     <div class="panel">
       <h2>Founder</h2>
+      <p><strong>Astin Storm Bremner</strong></p>
+      <p>Lead Cognitive Systems Engineer</p>
       <p>
-        Astin Storm Bremner<br>
-        Lead Cognitive Systems Engineer
-      </p>
-      <p>
-        Independent researcher working at the intersection of
-        computation, emotional modeling, and neurodivergent cognition.
-      </p>
-      <p>
-        ORCID & GitHub available upon request.
+        Independent researcher working at the intersection of computation,
+        emotional modeling, and neurodivergent cognition.
       </p>
       <button class="close">Close</button>
     </div>
-  </div>
+  </section>
 
-  <div class="overlay" id="research">
+  <section class="overlay" id="research">
     <div class="panel">
       <h2>Research Status</h2>
       <ul>
-        <li>Two provisional patents filed (July & December 2025)</li>
+        <li>Two provisional patents filed</li>
         <li>Paper I (LaTeX) — submission imminent</li>
         <li>Paper II — in preparation</li>
-        <li>Stress-test logs and timelines archived</li>
+        <li>Stress-test logs archived</li>
       </ul>
-      <p>
-        Technical details available upon request.
-      </p>
       <button class="close">Close</button>
     </div>
-  </div>
+  </section>
 
-  <div class="overlay" id="funding">
+  <section class="overlay" id="funding">
     <div class="panel">
       <h2>Funding</h2>
       <p>
-        EchoMatrix is currently seeking early-stage research funding
-        to support continued development and publication.
-      </p>
-      <p>
-        Grants, micro-funding, and research partnerships welcome.
+        EchoMatrix is currently seeking early-stage research funding,
+        grants, and aligned partnerships.
       </p>
       <button class="close">Close</button>
     </div>
-  </div>
+  </section>
 
-  <div class="overlay" id="contact">
+  <section class="overlay" id="contact">
     <div class="panel">
       <h2>Contact</h2>
       <p>
@@ -122,18 +104,14 @@
       </p>
       <p>
         Phone:
-        <a href="tel:+27839505625">
-          +27 83 950 5625
-        </a>
+        <a href="tel:+27839505625">+27 83 950 5625</a>
       </p>
-      <p>
-        Cape Town, South Africa
-      </p>
+      <p>Cape Town, South Africa</p>
       <button class="close">Close</button>
     </div>
-  </div>
+  </section>
 
   <!-- JS -->
-  <script src="scripts/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

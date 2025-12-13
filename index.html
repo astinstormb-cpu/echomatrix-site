@@ -5,113 +5,74 @@
   <title>EchoMatrix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
+  <!-- BACKGROUND LAYERS -->
   <div id="nebula"></div>
   <canvas id="starfield"></canvas>
+  <canvas id="shooting-stars"></canvas>
+  <div id="cursor-trail"></div>
 
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <img src="assets/images/logo.png" alt="EchoMatrix Logo">
+      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
       <span>EchoMatrix</span>
     </div>
 
     <nav>
-      <button data-open="about">About</button>
-      <button data-open="founder">Founder</button>
-      <button data-open="research">Research</button>
-      <button data-open="funding">Funding</button>
-      <button data-open="contact">Contact</button>
+      <button data-modal="about">About</button>
+      <button data-modal="founder">Founder</button>
+      <button data-modal="research">Research</button>
+      <button data-modal="funding">Funding</button>
+      <button data-modal="contact">Contact</button>
     </nav>
   </header>
 
   <!-- HERO -->
-  <main class="hero">
+  <main>
     <h1>EchoMatrix</h1>
-    <p>
-      Computational research into emotional structure, resonance,
-      and stabilised meaning.
-    </p>
+    <p>Computational research into emotional structure, resonance, and stabilised meaning.</p>
+
+    <div id="glyphs"></div>
   </main>
 
-  <!-- OVERLAYS -->
-  <section class="overlay" id="about">
-    <div class="panel">
-      <h2>About</h2>
-      <p>
-        EchoMatrix is an independent computational research initiative
-        exploring emotional systems, symbolic structure, and stability
-        through mathematical and semantic modeling.
-      </p>
-      <button class="close">Close</button>
-    </div>
-  </section>
+  <!-- MODALS -->
+  <div class="modal" id="about">
+    <h2>About</h2>
+    <p>EchoMatrix is an independent computational research initiative exploring emotional systems, symbolic structure, and stability through mathematical and semantic modeling.</p>
+    <button class="close">Close</button>
+  </div>
 
-  <section class="overlay" id="founder">
-    <div class="panel">
-      <h2>Founder</h2>
-      <p><strong>Astin Storm Bremner</strong></p>
-      <p>Lead Cognitive Systems Engineer</p>
-      <p>
-        Independent researcher working at the intersection of computation,
-        emotional modeling, and neurodivergent cognition.
-      </p>
-      <button class="close">Close</button>
-    </div>
-  </section>
+  <div class="modal" id="founder">
+    <h2>Founder</h2>
+    <p><strong>Astin Storm Bremner</strong><br>
+       Lead Cognitive Systems Engineer<br>
+       Independent researcher at the intersection of computation, emotional modeling, and neurodivergent cognition.</p>
+    <button class="close">Close</button>
+  </div>
 
-  <section class="overlay" id="research">
-    <div class="panel">
-      <h2>Research Status</h2>
-      <ul>
-        <li>Two provisional patents filed</li>
-        <li>Paper I (LaTeX) — submission imminent</li>
-        <li>Paper II — in preparation</li>
-        <li>Stress-test logs archived</li>
-      </ul>
-      <button class="close">Close</button>
-    </div>
-  </section>
+  <div class="modal" id="research">
+    <h2>Research</h2>
+    <p>Ongoing work on emotional invariance, resonance fields, and symbolic compression.</p>
+    <button class="close">Close</button>
+  </div>
 
-  <section class="overlay" id="funding">
-    <div class="panel">
-      <h2>Funding</h2>
-      <p>
-        EchoMatrix is currently seeking early-stage research funding,
-        grants, and aligned partnerships.
-      </p>
-      <button class="close">Close</button>
-    </div>
-  </section>
+  <div class="modal" id="funding">
+    <h2>Funding</h2>
+    <p>EchoMatrix is currently self-funded and exploring aligned partnerships.</p>
+    <button class="close">Close</button>
+  </div>
 
-  <section class="overlay" id="contact">
-    <div class="panel">
-      <h2>Contact</h2>
-      <p>
-        Email:
-        <a href="mailto:research.echomatrix@proton.me">
-          research.echomatrix@proton.me
-        </a>
-      </p>
-      <p>
-        Phone:
-        <a href="tel:+27839505625">+27 83 950 5625</a>
-      </p>
-      <p>Cape Town, South Africa</p>
-      <button class="close">Close</button>
-    </div>
-  </section>
+  <div class="modal" id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:research.echomatrix@proton.me">research.echomatrix@proton.me</a></p>
+    <button class="close">Close</button>
+  </div>
 
-  <!-- JS -->
   <script src="js/main.js"></script>
 </body>
 </html>

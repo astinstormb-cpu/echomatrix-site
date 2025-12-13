@@ -1,145 +1,245 @@
-* {
-  margin: 0;
-  padding: 0;
+/* =========================================================
+   EchoMatrix — Core Reset
+   ========================================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Inter", sans-serif;
-  background: black;
-  color: #e6ecff;
-  overflow: hidden;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #05060a;
+  color: #e6e8ef;
 }
 
-/* Nebula */
+/* =========================================================
+   Galaxy Background Layers
+   ========================================================= */
+
+/* Nebula image layer */
 #nebula {
   position: fixed;
   inset: 0;
-  background: url("nebula.jpg") center/cover no-repeat;
+  background-image: url("../nebula.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.35;
-  z-index: -3;
+  filter: blur(1px) saturate(1.2);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Starfield canvas */
 #starfield {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Cursor star */
+/* =========================================================
+   Cursor Star (follows mouse)
+   ========================================================= */
+
 #cursor-star {
   position: fixed;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(180,200,255,1) 0%,
+    rgba(120,140,255,0.8) 40%,
+    rgba(120,140,255,0.0) 70%
+  );
+  box-shadow: 0 0 12px rgba(160,180,255,0.8);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  background: radial-gradient(circle, #7aa2ff, transparent);
-  mix-blend-mode: screen;
-  animation: pulse 4s infinite;
-  z-index: 999;
+  z-index: 6;
+  animation: cursorPulse 4s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.4; transform: scale(0.8); }
-  50% { opacity: 0.8; transform: scale(1.2); }
-  100% { opacity: 0.4; transform: scale(0.8); }
+@keyframes cursorPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.4); }
 }
 
-/* Header */
+/* =========================================================
+   Content Wrapper
+   ========================================================= */
+
+.site {
+  position: relative;
+  z-index: 5;
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+}
+
+/* =========================================================
+   Header / Navigation
+   ========================================================= */
+
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 14px 24px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto 80px;
 }
 
 .logo {
-  height: 40px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.4px;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
 }
 
 nav button {
-  background: transparent;
-  border: none;
-  color: #9fb4ff;
-  margin-left: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #e6e8ef;
+  padding: 6px 14px;
+  border-radius: 10px;
   cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
 }
 
-/* Hero */
-#hero {
-  position: absolute;
-  top: 35%;
-  width: 100%;
+nav button:hover {
+  background: rgba(140,160,255,0.18);
+  border-color: rgba(160,180,255,0.6);
+}
+
+/* =========================================================
+   Hero Section
+   ========================================================= */
+
+.hero {
+  max-width: 900px;
+  margin: 0 auto 120px;
   text-align: center;
 }
 
-#hero h1 {
-  font-size: 3.2rem;
-  letter-spacing: 2px;
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin-bottom: 16px;
 }
 
-.tagline {
-  margin-top: 12px;
-  opacity: 0.75;
+.hero p {
+  font-size: 1.05rem;
+  opacity: 0.85;
 }
 
-/* Glyph orbit */
-#glyph-orbit {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+/* =========================================================
+   Glyph Cluster
+   ========================================================= */
+
+.glyphs {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 48px;
 }
 
-.glyph {
-  position: absolute;
-  font-size: 26px;
-  color: #7aa2ff;
-  pointer-events: auto;
-  cursor: pointer;
-  animation: drift 60s linear infinite;
+.glyphs img {
+  width: 42px;
+  height: 42px;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(120,160,255,0.6));
+  transition: transform 0.6s ease, opacity 0.4s ease;
 }
 
-@keyframes drift {
-  from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+.glyphs img:hover {
+  transform: scale(1.25) rotate(8deg);
+  opacity: 1;
 }
 
-/* Overlays */
+/* =========================================================
+   Overlay Panels (About / Founder / Research / Funding)
+   ========================================================= */
+
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(6,8,14,0.78);
+  backdrop-filter: blur(10px);
   display: none;
-  justify-content: center;
   align-items: center;
-  z-index: 20;
+  justify-content: center;
+  z-index: 10;
+}
+
+.overlay.active {
+  display: flex;
 }
 
 .panel {
-  background: rgba(10,15,30,0.9);
-  padding: 28px;
-  max-width: 520px;
-  border-radius: 10px;
+  max-width: 760px;
+  width: 90%;
+  background: rgba(16,18,30,0.85);
+  border: 1px solid rgba(140,160,255,0.25);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 0 40px rgba(80,120,255,0.35);
 }
 
 .panel h2 {
-  margin-bottom: 12px;
+  margin-top: 0;
 }
 
-.panel p, .panel li {
-  opacity: 0.85;
-  margin-bottom: 8px;
+.panel p,
+.panel li {
+  line-height: 1.55;
+  opacity: 0.9;
 }
 
-.panel a {
-  color: #9fb4ff;
+.panel button.close {
+  margin-top: 20px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #e6e8ef;
+  padding: 6px 14px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.close {
-  margin-top: 12px;
+/* =========================================================
+   Footer
+   ========================================================= */
+
+footer {
+  text-align: center;
+  opacity: 0.5;
+  margin-top: 120px;
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   Mobile Polish
+   ========================================================= */
+
+@media (max-width: 720px) {
+  header {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .glyphs {
+    flex-wrap: wrap;
+  }
 }

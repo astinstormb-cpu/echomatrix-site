@@ -1,125 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EchoMatrix Systems</title>
-    <link rel="stylesheet" href="styles/main.css" />
+  <meta charset="UTF-8" />
+  <title>EchoMatrix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- ================= HEADER ================= -->
-<header>
-    <img src="assets/echomatrix_logo.png" alt="EchoMatrix Logo" class="logo" />
-    <nav>
-        <a href="#about">About</a>
-        <a href="#founder">Founder</a>
-        <a href="#research">Research</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<canvas id="stars"></canvas>
+
+<header class="hero">
+  <img src="assets/logo.png" class="logo" alt="EchoMatrix Logo" />
+
+  <h1>EchoMatrix</h1>
+  <h2>Computational Systems for Adaptive Human Understanding</h2>
+
+  <div class="glyph-field">
+    <img src="assets/glyphs/g1.png" data-target="about" class="glyph" />
+    <img src="assets/glyphs/g2.png" data-target="founder" class="glyph" />
+    <img src="assets/glyphs/g3.png" data-target="research" class="glyph" />
+    <img src="assets/glyphs/g4.png" data-target="funding" class="glyph" />
+    <img src="assets/glyphs/g5.png" data-target="papers" class="glyph" />
+    <img src="assets/glyphs/g6.png" data-target="legal" class="glyph" />
+    <img src="assets/glyphs/g7.png" data-target="updates" class="glyph" />
+    <img src="assets/glyphs/g8.png" data-target="contact" class="glyph" />
+  </div>
 </header>
 
-<!-- ================= HERO SECTION ================= -->
-<section class="hero">
-    <h1>Eco-Emotional Intelligence Architecture</h1>
-    <p class="subtitle">Innovate. Connect. Transcend.</p>
-
-    <div class="glyph-orbit">
-        <img src="assets/glyph_1.png" class="g-orbit slow" />
-        <img src="assets/glyph_2.png" class="g-orbit medium" />
-        <img src="assets/glyph_3.png" class="g-orbit fast" />
-        <img src="assets/glyph_4.png" class="g-orbit pulse" />
-    </div>
+<section id="about">
+  <h3>About</h3>
+  <p>
+    EchoMatrix is an independent computational research initiative exploring how
+    complex emotional signals can be observed, represented, and studied through
+    adaptive systems.
+  </p>
 </section>
 
-<!-- ================= ABOUT ================= -->
-<section id="about" class="about">
-    <h2>About EchoMatrix</h2>
-    <p>
-        EchoMatrix Systems develops next-generation cognitive architectures,  
-        eco-emotional intelligence engines, symbolic resonance models, and adaptive  
-        human-aligned computational frameworks.
-    </p>
-
-    <div class="legal-box">
-        <h3>Legal Entity</h3>
-        <p><b>Enterprise Name:</b> EchoMatrix Systems (Pty) Ltd</p>
-        <p><b>Enterprise Number:</b> 2025/458981/07</p>
-        <p><b>Tax Number:</b> 9206168289</p>
-        <p><b>Location:</b> Cape Town, Western Cape, ZA</p>
-    </div>
-
-    <!-- IP DROPDOWN -->
-    <div class="dropdown">
-        <button class="dropbtn">Intellectual Property (Click to Expand)</button>
-        <div class="dropdown-content">
-            <p><b>Patent 1:</b> EchoMatrix Semantic Field Invariance System — Filed 29 Nov 2025 — <i>Referred</i></p>
-            <p><b>Patent 2:</b> EchoMatrix Cognitive Emotional Intelligence System — Filed 11 July 2025 — <i>Permanently Referred</i></p>
-            <p>Full documentation available upon request.</p>
-        </div>
-    </div>
+<section id="founder">
+  <h3>Founder</h3>
+  <p>
+    Astin Storm Bremner — Lead Cognitive Systems Engineer.
+  </p>
 </section>
 
-<!-- ================= FOUNDER ================= -->
-<section id="founder" class="founder">
-    <h2>Founder</h2>
-
-    <div class="founder-card">
-        <h3>Astin Storm Bremner</h3>
-        <p class="role">Founder & Lead Cognitive Systems Engineer</p>
-        <p>Researcher in symbolic computation, emotional physics, identity modelling,  
-        cognitive architectures, and adaptive human-machine resonance systems.</p>
-
-        <p><b>ORCID:</b> <a href="https://orcid.org/0009-0005-4617-0421" target="_blank">
-            0009-0005-4617-0421
-        </a></p>
-    </div>
+<section id="research">
+  <h3>Research</h3>
+  <p>
+    Ongoing computational research into adaptive representation and human-centered
+    understanding. Manuscripts in preparation.
+  </p>
 </section>
 
-<!-- ================= RESEARCH ================= -->
-<section id="research" class="research">
-    <h2>Research & Frameworks</h2>
-
-    <div class="research-grid">
-
-        <div class="r-card">
-            <img src="assets/glyph_5.png" />
-            <h3>Unified Cognitive Systems</h3>
-            <p>Architecture for next-era human-aligned cognition.</p>
-        </div>
-
-        <div class="r-card">
-            <img src="assets/glyph_2.png" />
-            <h3>Emotional Physics Engine</h3>
-            <p>Dynamic state-geometry, resonance modelling, curvature analysis.</p>
-        </div>
-
-        <div class="r-card">
-            <img src="assets/glyph_3.png" />
-            <h3>EchoTypes & Symbolic Models</h3>
-            <p>Adaptive archetypal pattern systems and semantic-emergent mapping.</p>
-        </div>
-
-        <div class="r-card">
-            <img src="assets/glyph_4.png" />
-            <h3>DEQ Identity Dynamics</h3>
-            <p>Quantified emotional change, attractors, and narrative stability.</p>
-        </div>
-
-    </div>
+<section id="funding">
+  <h3>Funding</h3>
+  <p>
+    EchoMatrix is seeking early-stage research funding to support experimentation,
+    documentation, and publication.
+  </p>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="contact">
-    <h2>Get in Touch</h2>
-    <p>Email: <b>research.echomatrix@proton.me</b></p>
-    <p>Phone (ZA): <b>+27 83 950 5625</b></p>
+<section id="papers">
+  <h3>Papers</h3>
+  <p>Research papers in preparation. Available upon request.</p>
 </section>
 
-<footer>
-    © 2025 EchoMatrix Systems — All Rights Reserved.
-</footer>
+<section id="legal">
+  <h3>Legal & IP</h3>
+  <p>
+    Intellectual property protected under provisional filings.
+    Details disclosed selectively.
+  </p>
+</section>
 
+<section id="updates">
+  <h3>Updates</h3>
+  <p>Project updates will be published periodically.</p>
+</section>
+
+<section id="contact">
+  <h3>Contact</h3>
+  <p>
+    research.echomatrix@proton.me<br/>
+    +27 83 950 5625
+  </p>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>

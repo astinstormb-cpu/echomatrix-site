@@ -1,4 +1,3 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -9,144 +8,161 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: black;
-  color: #dcdcff;
+  font-family: system-ui, sans-serif;
+  color: #e8ecff;
+  background: #05070c;
 }
 
-/* BACKGROUND */
-#background {
+/* Background */
+#nebula {
   position: fixed;
   inset: 0;
-  background: url("../assets/images/nebula.jpg") center / cover no-repeat;
-  filter: brightness(0.6) saturate(1.2);
-  animation: drift 180s ease-in-out infinite alternate;
-  z-index: -3;
+  background: radial-gradient(circle at 30% 40%, #4a2b82, #06122a 60%);
+  animation: nebulaDrift 180s linear infinite alternate;
+  z-index: 0;
 }
 
-@keyframes drift {
+@keyframes nebulaDrift {
   from { transform: scale(1) rotate(0deg); }
-  to { transform: scale(1.08) rotate(0.5deg); }
+  to   { transform: scale(1.1) rotate(2deg); }
 }
 
-/* STARS */
 #stars {
   position: fixed;
   inset: 0;
-  z-index: -2;
+  z-index: 1;
 }
 
-/* LOGO */
-#logo {
+/* Header */
+header {
   position: fixed;
   top: 24px;
   left: 24px;
-  z-index: 10;
+  z-index: 5;
 }
 
-#logo img {
-  width: 180px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-/* CORE */
+.brand img {
+  width: 72px;
+}
+
+.brand-text h1 {
+  font-size: 1.4rem;
+  color: #7bd7ff;
+}
+
+.brand-text p {
+  font-size: 0.85rem;
+  color: #b8bdf5;
+  max-width: 320px;
+}
+
+/* Center */
+main {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+}
+
 #core {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 2;
 }
 
 #xlviii {
-  font-size: 96px;
-  font-weight: 600;
-  letter-spacing: 6px;
-  background: linear-gradient(135deg, #7f7cff, #b56bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 3.8rem;
+  letter-spacing: 0.4rem;
+  color: #d6d8ff;
+  opacity: 0.9;
 }
 
-#core-sub {
-  margin-top: 12px;
-  font-size: 14px;
-  opacity: 0.75;
-}
-
-/* GLYPHS */
-#glyph-orbit {
+/* Orbit */
+#orbit {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 520px;
   height: 520px;
-  transform: translate(-50%, -50%);
-  animation: orbit 120s linear infinite;
+  margin-left: -260px;
+  margin-top: -260px;
+  animation: spin 80s linear infinite;
 }
 
-@keyframes orbit {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .glyph {
   position: absolute;
-  width: 48px;
-  height: 48px;
+  width: 52px;
   cursor: pointer;
-  filter: drop-shadow(0 0 8px rgba(140,120,255,0.4));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(120,200,255,0.4));
 }
 
-.glyph:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 16px rgba(180,140,255,0.8));
-}
+/* Even spacing */
+.glyph:nth-child(1) { top: 0%; left: 50%; transform: translateX(-50%); }
+.glyph:nth-child(2) { top: 15%; right: 15%; }
+.glyph:nth-child(3) { top: 50%; right: 0%; transform: translateY(-50%); }
+.glyph:nth-child(4) { bottom: 15%; right: 15%; }
+.glyph:nth-child(5) { bottom: 0%; left: 50%; transform: translateX(-50%); }
+.glyph:nth-child(6) { bottom: 15%; left: 15%; }
+.glyph:nth-child(7) { top: 50%; left: 0%; transform: translateY(-50%); }
+.glyph:nth-child(8) { top: 15%; left: 15%; }
 
-/* POSITION GLYPHS */
-.glyph:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, 0); }
-.glyph:nth-child(2) { top: 18%; left: 82%; }
-.glyph:nth-child(3) { top: 50%; left: 100%; transform: translate(-100%, -50%); }
-.glyph:nth-child(4) { top: 82%; left: 82%; }
-.glyph:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -100%); }
-.glyph:nth-child(6) { top: 82%; left: 18%; }
-.glyph:nth-child(7) { top: 50%; left: 0%; transform: translate(0, -50%); }
-.glyph:nth-child(8) { top: 18%; left: 18%; }
-
-/* OVERLAY */
+/* Overlay */
 #overlay {
   position: fixed;
   inset: 0;
-  z-index: 20;
-}
-
-#overlay.hidden {
+  background: rgba(5,7,15,0.92);
+  backdrop-filter: blur(6px);
   display: none;
-}
-
-#overlay-bg {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
+  z-index: 10;
 }
 
 #overlay-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(700px, 90%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+  inset: 10%;
+  border: 1px solid #5aa6ff;
+  border-radius: 14px;
+  padding: 32px;
 }
 
 #overlay-glyph {
-  width: 64px;
-  margin-bottom: 24px;
-  cursor: pointer;
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
+  width: 200px;
+  opacity: 0.08;
 }
 
 #overlay-text {
-  font-size: 16px;
+  max-width: 800px;
   line-height: 1.6;
-  opacity: 0.9;
+}
+
+#overlay-text h2 {
+  color: #9db8ff;
+  margin-bottom: 12px;
+}
+
+#close-overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

@@ -9,38 +9,49 @@
 </head>
 <body>
 
-  <!-- Background -->
+  <!-- BACKGROUND -->
   <div id="nebula"></div>
   <canvas id="stars"></canvas>
 
-  <!-- Core System -->
-  <main id="system">
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
+      <span>EchoMatrix</span>
+    </div>
+  </header>
 
-    <!-- Core -->
+  <!-- MAIN -->
+  <main>
     <div id="core">
-      <span class="roman">XLVIII</span>
+      <div id="xlviii">XLVIII</div>
     </div>
 
-    <!-- Glyph Ring -->
-    <div id="glyph-ring">
-      <img src="assets/GLYPHS/glyph1.png" data-label="About" />
-      <img src="assets/GLYPHS/glyph2.png" data-label="Founder" />
-      <img src="assets/GLYPHS/glyph3.png" data-label="Research" />
-      <img src="assets/GLYPHS/glyph4.png" data-label="Funding" />
-      <img src="assets/GLYPHS/glyph5.png" data-label="Contact" />
-      <img src="assets/GLYPHS/glyph6.png" data-label="IP" />
-      <img src="assets/GLYPHS/glyph7.png" data-label="Papers" />
-      <img src="assets/GLYPHS/glyph8.png" data-label="EchoLex" />
+    <!-- GLYPH ORBIT -->
+    <div id="glyph-orbit">
+      <img src="assets/glyphs/glyph-1.png" data-label="About" />
+      <img src="assets/glyphs/glyph-2.png" data-label="Founder" />
+      <img src="assets/glyphs/glyph-3.png" data-label="Research" />
+      <img src="assets/glyphs/glyph-4.png" data-label="Funding" />
+      <img src="assets/glyphs/glyph-5.png" data-label="Contact" />
+      <img src="assets/glyphs/glyph-6.png" data-label="EchoLex" />
+      <img src="assets/glyphs/glyph-7.png" data-label="IP" />
+      <img src="assets/glyphs/glyph-8.png" data-label="Vault" />
     </div>
 
+    <!-- MOON PLACEHOLDERS -->
+    <div id="moon-orbit"></div>
   </main>
 
-  <!-- Overlay -->
+  <!-- OVERLAY -->
   <div id="overlay">
-    <div id="overlay-content">
-      <span id="overlay-close">✕</span>
-      <h2 id="overlay-title"></h2>
-      <p id="overlay-text"></p>
+    <div class="overlay-content">
+      <div class="overlay-glyph"></div>
+      <div class="overlay-text">
+        <h2 id="overlay-title"></h2>
+        <p>This section contains protected EchoMatrix content.</p>
+      </div>
+      <div id="overlay-close"></div>
     </div>
   </div>
 

@@ -1,8 +1,8 @@
-/* STARFIELD */
+/* Stars */
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
+let w, h, stars;
 
-let w, h;
 function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
@@ -10,64 +10,54 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-const stars = [];
-const STAR_COUNT = 180;
-
-for (let i = 0; i < STAR_COUNT; i++) {
-  stars.push({
-    r: Math.random() * Math.max(w, h),
-    a: Math.random() * Math.PI * 2,
-    s: 0.00005 + Math.random() * 0.00015,
-    size: 0.5 + Math.random() * 2,
-    alpha: 0.3 + Math.random() * 0.7
-  });
-}
+stars = Array.from({ length: 220 }, () => ({
+  r: Math.random() * 1.5 + 0.5,
+  a: Math.random() * Math.PI * 2,
+  d: Math.random() * Math.min(w, h),
+  s: Math.random() * 0.00015 + 0.00005,
+  o: Math.random() * 0.8 + 0.2
+}));
 
 function drawStars() {
-  ctx.clearRect(0, 0, w, h);
-  ctx.translate(w / 2, h / 2);
-
+  ctx.clearRect(0,0,w,h);
   stars.forEach(star => {
     star.a += star.s;
-    const x = Math.cos(star.a) * star.r;
-    const y = Math.sin(star.a) * star.r;
-
+    const x = w/2 + Math.cos(star.a) * star.d;
+    const y = h/2 + Math.sin(star.a) * star.d;
+    ctx.fillStyle = `rgba(200,220,255,${star.o})`;
     ctx.beginPath();
-    ctx.fillStyle = `rgba(180,160,255,${star.alpha})`;
-    ctx.arc(x, y, star.size, 0, Math.PI * 2);
+    ctx.arc(x,y,star.r,0,Math.PI*2);
     ctx.fill();
   });
-
-  ctx.setTransform(1,0,0,1,0,0);
   requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* OVERLAYS */
-const overlay = document.getElementById("overlay");
-const overlayText = document.getElementById("overlay-text");
-const overlayGlyph = document.getElementById("overlay-glyph");
-
+/* Overlay content */
 const content = {
-  about: "EchoMatrix is a computational research initiative exploring how emotional structure, resonance, and meaning can be modeled, stabilized, and studied within complex systems.",
-  founder: "Founded by Astin Bremner. Lead cognitive systems engineer and researcher focused on emotional computation, identity dynamics, and human–AI co-evolution.",
-  problem: "Current systems fail to model emotional meaning with continuity and stability. EchoMatrix addresses this gap through structured, testable representations.",
-  system: "A modular research system integrating computational modeling, symbolic structure, and longitudinal analysis of emotional states.",
-  progress: "Two provisional patents filed. Research papers in final preparation. Working prototypes, datasets, and internal validation completed.",
-  vision: "To establish a new research foundation for emotional computation and aligned human-centric systems.",
-  funding: "Seeking early-stage research and seed funding to support publication, infrastructure, and controlled expansion.",
-  contact: "research.ecomatrix@proton.me"
+  about: `<h2>About EchoMatrix</h2><p>EchoMatrix is a cognitive research initiative focused on how meaning, emotion, and identity stabilize over time. Current systems fragment these domains; EchoMatrix studies them as a unified structure.</p>`,
+  founder: `<h2>Founder</h2><p>Astin Storm Bremner founded EchoMatrix to address gaps between lived emotional experience and formal cognitive models, with a long-term research-first approach.</p>`,
+  problem: `<h2>The Problem</h2><p>Most systems reduce emotion or meaning to surface metrics. EchoMatrix investigates why this fails and how stability emerges instead.</p>`,
+  research: `<h2>Research</h2><p>Current work explores stabilized meaning systems, emotional continuity, and identity persistence.</p>`,
+  progress: `<h2>Progress</h2><p>Core framework established. Prototypes operational. Preparing first formal publications.</p>`,
+  vision: `<h2>Vision</h2><p>A long-term research platform for understanding meaning at human scale.</p>`,
+  funding: `<h2>Funding</h2><p>Funding enables dedicated research time, validation, and publication.</p>`,
+  contact: `<h2>Contact</h2>
+    <p>Email: contact@echomatrix.ai</p>
+    <p>Phone: +27 83 950 5625</p>
+    <p>Location: South Africa</p>`
 };
 
-document.querySelectorAll(".glyph").forEach(glyph => {
-  glyph.addEventListener("click", () => {
-    const key = glyph.dataset.section;
-    overlayText.innerText = content[key];
-    overlayGlyph.src = glyph.src;
-    overlay.classList.remove("hidden");
-  });
+document.querySelectorAll(".glyph").forEach(g => {
+  g.onclick = () => {
+    const id = g.dataset.id;
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("overlay-text").innerHTML = content[id];
+    document.getElementById("overlay-glyph").src = g.src;
+    document.getElementById("close-overlay").style.backgroundImage = `url(${g.src})`;
+  };
 });
 
-overlayGlyph.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-});
+document.getElementById("close-overlay").onclick = () => {
+  document.getElementById("overlay").style.display = "none";
+};

@@ -7,70 +7,41 @@
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-  <!-- BACKGROUND LAYERS -->
+  <!-- Background -->
   <div id="nebula"></div>
-  <canvas id="starfield"></canvas>
-  <canvas id="shooting-stars"></canvas>
-  <div id="cursor-trail"></div>
+  <canvas id="stars"></canvas>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
-      <span>EchoMatrix</span>
+  <!-- Core System -->
+  <main id="system">
+
+    <!-- Core -->
+    <div id="core">
+      <span class="roman">XLVIII</span>
     </div>
 
-    <nav>
-      <button data-modal="about">About</button>
-      <button data-modal="founder">Founder</button>
-      <button data-modal="research">Research</button>
-      <button data-modal="funding">Funding</button>
-      <button data-modal="contact">Contact</button>
-    </nav>
-  </header>
+    <!-- Glyph Ring -->
+    <div id="glyph-ring">
+      <img src="assets/GLYPHS/glyph1.png" data-label="About" />
+      <img src="assets/GLYPHS/glyph2.png" data-label="Founder" />
+      <img src="assets/GLYPHS/glyph3.png" data-label="Research" />
+      <img src="assets/GLYPHS/glyph4.png" data-label="Funding" />
+      <img src="assets/GLYPHS/glyph5.png" data-label="Contact" />
+      <img src="assets/GLYPHS/glyph6.png" data-label="IP" />
+      <img src="assets/GLYPHS/glyph7.png" data-label="Papers" />
+      <img src="assets/GLYPHS/glyph8.png" data-label="EchoLex" />
+    </div>
 
-  <!-- HERO -->
-  <main>
-    <h1>EchoMatrix</h1>
-    <p>Computational research into emotional structure, resonance, and stabilised meaning.</p>
-
-    <div id="glyphs"></div>
   </main>
 
-  <!-- MODALS -->
-  <div class="modal" id="about">
-    <h2>About</h2>
-    <p>EchoMatrix is an independent computational research initiative exploring emotional systems, symbolic structure, and stability through mathematical and semantic modeling.</p>
-    <button class="close">Close</button>
-  </div>
-
-  <div class="modal" id="founder">
-    <h2>Founder</h2>
-    <p><strong>Astin Storm Bremner</strong><br>
-       Lead Cognitive Systems Engineer<br>
-       Independent researcher at the intersection of computation, emotional modeling, and neurodivergent cognition.</p>
-    <button class="close">Close</button>
-  </div>
-
-  <div class="modal" id="research">
-    <h2>Research</h2>
-    <p>Ongoing work on emotional invariance, resonance fields, and symbolic compression.</p>
-    <button class="close">Close</button>
-  </div>
-
-  <div class="modal" id="funding">
-    <h2>Funding</h2>
-    <p>EchoMatrix is currently self-funded and exploring aligned partnerships.</p>
-    <button class="close">Close</button>
-  </div>
-
-  <div class="modal" id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:research.echomatrix@proton.me">research.echomatrix@proton.me</a></p>
-    <button class="close">Close</button>
+  <!-- Overlay -->
+  <div id="overlay">
+    <div id="overlay-content">
+      <span id="overlay-close">✕</span>
+      <h2 id="overlay-title"></h2>
+      <p id="overlay-text"></p>
+    </div>
   </div>
 
   <script src="js/main.js"></script>

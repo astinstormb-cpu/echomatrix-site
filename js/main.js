@@ -1,78 +1,93 @@
+// =======================
 // STARFIELD
+// =======================
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
-let stars = [];
+
+let w, h, stars = [];
 
 function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
 }
 window.addEventListener("resize", resize);
 resize();
 
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 300; i++) {
   stars.push({
-    angle: Math.random() * Math.PI * 2,
-    radius: Math.random() * Math.max(canvas.width, canvas.height),
-    speed: 0.0001 + Math.random() * 0.0003,
-    size: Math.random() * 2 + 0.5,
-    alpha: Math.random()
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 1.5 + 0.3,
+    a: Math.random(),
+    s: Math.random() * 0.15 + 0.02
   });
 }
 
 function drawStars() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.translate(canvas.width/2, canvas.height/2);
-
+  ctx.clearRect(0, 0, w, h);
   stars.forEach(s => {
-    s.angle += s.speed;
+    s.a += s.s;
+    ctx.fillStyle = `rgba(255,255,255,${0.5 + Math.sin(s.a) * 0.5})`;
     ctx.beginPath();
-    ctx.fillStyle = `rgba(180,160,255,${s.alpha})`;
-    ctx.arc(
-      Math.cos(s.angle) * s.radius,
-      Math.sin(s.angle) * s.radius,
-      s.size,
-      0,
-      Math.PI*2
-    );
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
     ctx.fill();
   });
-
-  ctx.setTransform(1,0,0,1,0,0);
   requestAnimationFrame(drawStars);
 }
 drawStars();
 
-// GLYPH ORBIT POSITIONS
-const glyphs = document.querySelectorAll(".glyph");
-glyphs.forEach((g, i) => {
-  g.style.transform = `rotate(${i * (360 / glyphs.length)}deg) translateX(260px)`;
-});
+// =======================
+// GLYPH ORBIT
+// =======================
+const orbit = document.getElementById("orbit");
 
-// OVERLAY CONTENT
-const content = {
-  about: "EchoMatrix explores how meaning, emotion, and identity stabilize across time and context.",
-  founder: "Founded by Astin Bremner, independent researcher and systems designer.",
-  research: "Focused on cognitive systems, symbolic representation, and emotional structure.",
-  status: "Two papers in final preparation. Core IP filed. Pre-publication phase.",
-  funding: "Seeking early-stage research micro-grants and seed funding.",
-  vision: "To build stable, interpretable systems for human-aligned cognition.",
-  papers: "Paper I and II in LaTeX. Submission imminent.",
-  contact: "research.ecomatrix@proton.me\n+27 83 950 5625\nSouth Africa"
-};
+const glyphData = [
+  { title: "About EchoMatrix", content: "EchoMatrix is a research system focused on stabilizing meaning, emotion, and identity in intelligent systems." },
+  { title: "Founder", content: "Astin Storm Bremner — Founder & Lead Researcher. ORCID: 0009-0005-4617-0421. Cape Town, South Africa." },
+  { title: "Research Focus", content: "Meaning formation, emotional structure, and identity stability across human–AI systems." },
+  { title: "Current Status", content: "Registered company. Patents filed. Research papers in preparation. Prototype systems under development." },
+  { title: "Validation", content: "CIPC registered. SARS registered. ORCID verified. Patent filings pending." },
+  { title: "Funding Use", content: "Funding enables research time, compute resources, validation studies, and publication." },
+  { title: "Vision", content: "To build foundational cognitive systems that support stable, interpretable intelligence." },
+  { title: "Contact", content: "Email: astinstormb@gmail.com | Phone: +27 83 950 5625 | Cape Town, South Africa" }
+];
 
-const overlay = document.getElementById("overlay");
-const overlayGlyph = document.getElementById("overlay-glyph");
-const overlayText = document.getElementById("overlay-text");
+const radius = 260;
+let angle = 0;
 
-glyphs.forEach(g => {
-  g.addEventListener("click", () => {
-    overlay.classList.remove("hidden");
-    overlayGlyph.src = g.src;
-    overlayText.innerText = content[g.dataset.section];
+glyphData.forEach((g, i) => {
+  const el = document.createElement("div");
+  el.className = "glyph";
+  el.innerHTML = `<img src="assets/glyphs/glyph-${i + 1}.png" />`;
+  orbit.appendChild(el);
+
+  el.addEventListener("click", () => {
+    document.getElementById("panelTitle").textContent = g.title;
+    document.getElementById("panelContent").innerHTML = `<p>${g.content}</p>`;
+    document.getElementById("overlay").style.display = "flex";
   });
+
+  el._index = i;
+  el._el = el;
 });
 
-overlayGlyph.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-});
+function animateOrbit() {
+  angle += 0.002; // slow rotation
+  const items = orbit.children;
+  for (let i = 0; i < items.length; i++) {
+    const theta = angle + (i * Math.PI * 2) / items.length;
+    const x = Math.cos(theta) * radius + radius;
+    const y = Math.sin(theta) * radius + radius;
+    items[i].style.left = `${x}px`;
+    items[i].style.top = `${y}px`;
+  }
+  requestAnimationFrame(animateOrbit);
+}
+animateOrbit();
+
+// =======================
+// OVERLAY CLOSE
+// =======================
+document.getElementById("closeOverlay").onclick = () => {
+  document.getElementById("overlay").style.display = "none";
+};

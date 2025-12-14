@@ -4,48 +4,50 @@
   <meta charset="UTF-8" />
   <title>EchoMatrix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-
-  <!-- BACKGROUND -->
-  <div id="background"></div>
+  <!-- Background -->
+  <div id="nebula"></div>
   <canvas id="stars"></canvas>
 
-  <!-- LOGO -->
-  <header id="logo">
-    <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
+      <div class="brand-text">
+        <h1>EchoMatrix</h1>
+        <p>A stable cognitive research system for meaning, emotion, and identity</p>
+      </div>
+    </div>
   </header>
 
-  <!-- CENTER CORE -->
-  <div id="core">
-    <div id="xlviii">XLVIII</div>
-    <div id="core-sub">
-      A stabilized cognitive research system
+  <!-- Center System -->
+  <main>
+    <div id="core">
+      <div id="xlviii">XLVIII</div>
     </div>
-  </div>
 
-  <!-- GLYPH ORBIT -->
-  <div id="glyph-orbit">
-    <img src="assets/glyphs/glyph1.png" class="glyph" data-section="about" />
-    <img src="assets/glyphs/glyph2.png" class="glyph" data-section="founder" />
-    <img src="assets/glyphs/glyph3.png" class="glyph" data-section="problem" />
-    <img src="assets/glyphs/glyph4.png" class="glyph" data-section="system" />
-    <img src="assets/glyphs/glyph5.png" class="glyph" data-section="progress" />
-    <img src="assets/glyphs/glyph6.png" class="glyph" data-section="vision" />
-    <img src="assets/glyphs/glyph7.png" class="glyph" data-section="funding" />
-    <img src="assets/glyphs/glyph8.png" class="glyph" data-section="contact" />
-  </div>
+    <div id="orbit">
+      <!-- 8 glyph buttons -->
+      <img src="assets/glyphs/glyph-1.png" class="glyph" data-id="about" />
+      <img src="assets/glyphs/glyph-2.png" class="glyph" data-id="founder" />
+      <img src="assets/glyphs/glyph-3.png" class="glyph" data-id="problem" />
+      <img src="assets/glyphs/glyph-4.png" class="glyph" data-id="research" />
+      <img src="assets/glyphs/glyph-5.png" class="glyph" data-id="progress" />
+      <img src="assets/glyphs/glyph-6.png" class="glyph" data-id="vision" />
+      <img src="assets/glyphs/glyph-7.png" class="glyph" data-id="funding" />
+      <img src="assets/glyphs/glyph-8.png" class="glyph" data-id="contact" />
+    </div>
+  </main>
 
-  <!-- OVERLAY -->
-  <div id="overlay" class="hidden">
-    <div id="overlay-bg"></div>
-
+  <!-- Overlay -->
+  <div id="overlay">
     <div id="overlay-content">
       <img id="overlay-glyph" />
       <div id="overlay-text"></div>
+      <button id="close-overlay"></button>
     </div>
   </div>
 

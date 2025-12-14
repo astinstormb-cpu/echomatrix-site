@@ -1,103 +1,84 @@
-/* ===== MODALS ===== */
-document.querySelectorAll("nav button").forEach(btn => {
-  btn.onclick = () => {
-    document.getElementById(btn.dataset.modal).style.display = "block";
-  };
-});
-
-document.querySelectorAll(".close").forEach(btn => {
-  btn.onclick = () => btn.parentElement.style.display = "none";
-});
-
-/* ===== STARFIELD ===== */
-const canvas = document.getElementById("starfield");
+/* ===== STAR FIELD ===== */
+const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
 
-let stars = Array.from({ length: 220 }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 1.5,
-  v: Math.random() * 0.3 + 0.1
-}));
+let stars = [];
+const STAR_COUNT = 220;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+for (let i = 0; i < STAR_COUNT; i++) {
+  stars.push({
+    r: Math.random() * Math.max(canvas.width, canvas.height),
+    a: Math.random() * Math.PI * 2,
+    s: 0.0001 + Math.random() * 0.0003,
+    size: Math.random() * 1.5 + 0.5,
+    pulse: Math.random() * Math.PI * 2
+  });
+}
 
 function drawStars() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = "white";
-  stars.forEach(s => {
-    s.y += s.v;
-    if (s.y > canvas.height) s.y = 0;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    star.a += star.s;
+    star.pulse += 0.02;
+
+    const x = canvas.width / 2 + Math.cos(star.a) * star.r;
+    const y = canvas.height / 2 + Math.sin(star.a) * star.r;
+    const alpha = 0.4 + Math.sin(star.pulse) * 0.3;
+
+    ctx.fillStyle = `rgba(180,200,255,${alpha})`;
     ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.arc(x, y, star.size, 0, Math.PI * 2);
     ctx.fill();
   });
+
   requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* ===== SHOOTING STARS ===== */
-const sc = document.getElementById("shooting-stars");
-const sctx = sc.getContext("2d");
-sc.width = innerWidth;
-sc.height = innerHeight;
+/* ===== GLYPH ORBIT ===== */
+const glyphs = document.querySelectorAll("#glyph-ring img");
+const radius = 200;
+let angleOffset = 0;
 
-let shooting = [];
+function orbitGlyphs() {
+  angleOffset += 0.0015;
 
-setInterval(() => {
-  shooting.push({
-    x: Math.random()*sc.width,
-    y: 0,
-    vx: 6,
-    vy: 6,
-    life: 60
+  glyphs.forEach((glyph, i) => {
+    const angle = angleOffset + (i / glyphs.length) * Math.PI * 2;
+    const x = window.innerWidth / 2 + Math.cos(angle) * radius;
+    const y = window.innerHeight / 2 + Math.sin(angle) * radius;
+
+    glyph.style.left = `${x - glyph.clientWidth / 2}px`;
+    glyph.style.top = `${y - glyph.clientHeight / 2}px`;
   });
-}, 2500);
 
-function drawShooting() {
-  sctx.clearRect(0,0,sc.width,sc.height);
-  shooting.forEach((s,i) => {
-    sctx.strokeStyle = "rgba(255,255,255,0.8)";
-    sctx.beginPath();
-    sctx.moveTo(s.x, s.y);
-    sctx.lineTo(s.x - s.vx*4, s.y - s.vy*4);
-    sctx.stroke();
-    s.x += s.vx;
-    s.y += s.vy;
-    if (--s.life <= 0) shooting.splice(i,1);
-  });
-  requestAnimationFrame(drawShooting);
+  requestAnimationFrame(orbitGlyphs);
 }
-drawShooting();
+orbitGlyphs();
 
-/* ===== CURSOR TRAIL ===== */
-const trail = document.getElementById("cursor-trail");
-const tctx = trail.getContext?.("2d") || null;
+/* ===== OVERLAY ===== */
+const overlay = document.getElementById("overlay");
+const overlayTitle = document.getElementById("overlay-title");
+const overlayText = document.getElementById("overlay-text");
+const overlayClose = document.getElementById("overlay-close");
 
-let trailPoints = [];
-window.onmousemove = e => {
-  trailPoints.push({x:e.clientX,y:e.clientY,life:20});
+glyphs.forEach(glyph => {
+  glyph.addEventListener("click", () => {
+    overlayTitle.textContent = glyph.dataset.label;
+    overlayText.textContent =
+      "This section will contain protected EchoMatrix content.";
+    overlay.style.display = "flex";
+  });
+});
+
+overlayClose.onclick = () => {
+  overlay.style.display = "none";
 };
-
-function drawTrail(){
-  if(!tctx) return;
-  tctx.clearRect(0,0,trail.width,trail.height);
-  trailPoints.forEach((p,i)=>{
-    tctx.fillStyle=`rgba(90,108,255,${p.life/20})`;
-    tctx.beginPath();
-    tctx.arc(p.x,p.y,3,0,Math.PI*2);
-    tctx.fill();
-    if(--p.life<=0) trailPoints.splice(i,1);
-  });
-  requestAnimationFrame(drawTrail);
-}
-
-/* ===== GLYPHS ===== */
-const glyphContainer = document.getElementById("glyphs");
-for(let i=1;i<=8;i++){
-  const img=document.createElement("img");
-  img.src=`assets/glyphs/glyph-${i}.png`;
-  img.style.left=Math.random()*innerWidth+"px";
-  img.style.top=Math.random()*innerHeight+"px";
-  glyphContainer.appendChild(img);
-}

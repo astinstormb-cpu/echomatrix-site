@@ -4,45 +4,39 @@
   <meta charset="UTF-8" />
   <title>EchoMatrix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Background -->
-  <div class="nebula"></div>
-  <canvas id="stars"></canvas>
-
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="header">
-    <img src="assets/images/logo.png" class="logo" alt="EchoMatrix Logo">
-    <div class="header-text">
-      <h1>EchoMatrix</h1>
-      <p>A stable cognitive research system for meaning, emotion, and identity.</p>
+    <div class="brand">
+      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
+      <div class="brand-text">
+        <h1>EchoMatrix</h1>
+        <p>A stable cognitive research system for meaning, emotion, and identity.</p>
+      </div>
     </div>
   </header>
 
-  <!-- Core -->
-  <div class="core-container">
-    <div class="core">XLVIII</div>
+  <!-- STARFIELD -->
+  <canvas id="stars"></canvas>
 
-    <div class="orbit">
-      <img src="assets/images/glyph-1.png" class="glyph" data-section="about">
-      <img src="assets/images/glyph-2.png" class="glyph" data-section="founder">
-      <img src="assets/images/glyph-3.png" class="glyph" data-section="research">
-      <img src="assets/images/glyph-4.png" class="glyph" data-section="status">
-      <img src="assets/images/glyph-5.png" class="glyph" data-section="funding">
-      <img src="assets/images/glyph-6.png" class="glyph" data-section="vision">
-      <img src="assets/images/glyph-7.png" class="glyph" data-section="papers">
-      <img src="assets/images/glyph-8.png" class="glyph" data-section="contact">
+  <!-- CENTER SYSTEM -->
+  <div class="system">
+    <div class="core">
+      <div class="roman">XLVIII</div>
     </div>
+
+    <div class="orbit" id="orbit"></div>
   </div>
 
-  <!-- Overlay -->
-  <div id="overlay" class="overlay hidden">
-    <div class="overlay-content">
-      <img id="overlay-glyph" />
-      <div id="overlay-text"></div>
+  <!-- OVERLAY PANEL -->
+  <div class="overlay" id="overlay">
+    <div class="panel">
+      <button class="close" id="closeOverlay">✕</button>
+      <h2 id="panelTitle"></h2>
+      <div id="panelContent"></div>
     </div>
   </div>
 

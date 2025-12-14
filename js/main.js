@@ -1,77 +1,73 @@
-const glyphs = document.querySelectorAll("#glyph-orbit img");
-const moonOrbit = document.getElementById("moon-orbit");
-const overlay = document.getElementById("overlay");
-const overlayTitle = document.getElementById("overlay-title");
-const overlayGlyph = document.querySelector(".overlay-glyph");
-const overlayClose = document.getElementById("overlay-close");
-
-const CENTER_X = window.innerWidth / 2;
-const CENTER_Y = window.innerHeight / 2;
-const PRIMARY_RADIUS = 240;
-const ORBIT_SPEED = 0.0005;
-
-let angle = 0;
-
-/* ORBIT GLYPHS */
-function animateGlyphs() {
-  angle += ORBIT_SPEED;
-  glyphs.forEach((glyph, i) => {
-    const theta = angle + (i / glyphs.length) * Math.PI * 2;
-    const x = CENTER_X + Math.cos(theta) * PRIMARY_RADIUS;
-    const y = CENTER_Y + Math.sin(theta) * PRIMARY_RADIUS;
-    glyph.style.left = `${x}px`;
-    glyph.style.top = `${y}px`;
-  });
-  requestAnimationFrame(animateGlyphs);
-}
-animateGlyphs();
-
-/* MOON PLACEHOLDERS */
-for (let i = 0; i < 6; i++) {
-  const moon = document.createElement("div");
-  moon.className = "moon";
-  moonOrbit.appendChild(moon);
-}
-
-/* OVERLAY */
-glyphs.forEach(glyph => {
-  glyph.addEventListener("click", () => {
-    overlay.style.display = "block";
-    overlayTitle.textContent = glyph.dataset.label;
-    overlayGlyph.style.backgroundImage = `url(${glyph.src})`;
-    overlayClose.style.backgroundImage = `url(${glyph.src})`;
-  });
-});
-
-overlayClose.addEventListener("click", () => {
-  overlay.style.display = "none";
-});
-
-/* STARS */
+/* STARFIELD */
 const canvas = document.getElementById("stars");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-const stars = Array.from({ length: 180 }, () => ({
-  r: Math.random() * Math.min(canvas.width, canvas.height) / 2,
-  a: Math.random() * Math.PI * 2,
-  s: Math.random() * 0.0004 + 0.0001,
-  size: Math.random() * 2 + 0.5,
-  o: Math.random()
-}));
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const stars = [];
+const STAR_COUNT = 180;
+
+for (let i = 0; i < STAR_COUNT; i++) {
+  stars.push({
+    r: Math.random() * Math.max(w, h),
+    a: Math.random() * Math.PI * 2,
+    s: 0.00005 + Math.random() * 0.00015,
+    size: 0.5 + Math.random() * 2,
+    alpha: 0.3 + Math.random() * 0.7
+  });
+}
 
 function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, w, h);
+  ctx.translate(w / 2, h / 2);
+
   stars.forEach(star => {
     star.a += star.s;
-    const x = CENTER_X + Math.cos(star.a) * star.r;
-    const y = CENTER_Y + Math.sin(star.a) * star.r;
-    ctx.fillStyle = `rgba(180,160,255,${star.o})`;
+    const x = Math.cos(star.a) * star.r;
+    const y = Math.sin(star.a) * star.r;
+
     ctx.beginPath();
+    ctx.fillStyle = `rgba(180,160,255,${star.alpha})`;
     ctx.arc(x, y, star.size, 0, Math.PI * 2);
     ctx.fill();
   });
+
+  ctx.setTransform(1,0,0,1,0,0);
   requestAnimationFrame(drawStars);
 }
 drawStars();
+
+/* OVERLAYS */
+const overlay = document.getElementById("overlay");
+const overlayText = document.getElementById("overlay-text");
+const overlayGlyph = document.getElementById("overlay-glyph");
+
+const content = {
+  about: "EchoMatrix is a computational research initiative exploring how emotional structure, resonance, and meaning can be modeled, stabilized, and studied within complex systems.",
+  founder: "Founded by Astin Bremner. Lead cognitive systems engineer and researcher focused on emotional computation, identity dynamics, and human–AI co-evolution.",
+  problem: "Current systems fail to model emotional meaning with continuity and stability. EchoMatrix addresses this gap through structured, testable representations.",
+  system: "A modular research system integrating computational modeling, symbolic structure, and longitudinal analysis of emotional states.",
+  progress: "Two provisional patents filed. Research papers in final preparation. Working prototypes, datasets, and internal validation completed.",
+  vision: "To establish a new research foundation for emotional computation and aligned human-centric systems.",
+  funding: "Seeking early-stage research and seed funding to support publication, infrastructure, and controlled expansion.",
+  contact: "research.ecomatrix@proton.me"
+};
+
+document.querySelectorAll(".glyph").forEach(glyph => {
+  glyph.addEventListener("click", () => {
+    const key = glyph.dataset.section;
+    overlayText.innerText = content[key];
+    overlayGlyph.src = glyph.src;
+    overlay.classList.remove("hidden");
+  });
+});
+
+overlayGlyph.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+});

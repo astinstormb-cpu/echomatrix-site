@@ -7,51 +7,45 @@
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
   <!-- BACKGROUND -->
-  <div id="nebula"></div>
+  <div id="background"></div>
   <canvas id="stars"></canvas>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
-      <span>EchoMatrix</span>
-    </div>
+  <!-- LOGO -->
+  <header id="logo">
+    <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
   </header>
 
-  <!-- MAIN -->
-  <main>
-    <div id="core">
-      <div id="xlviii">XLVIII</div>
+  <!-- CENTER CORE -->
+  <div id="core">
+    <div id="xlviii">XLVIII</div>
+    <div id="core-sub">
+      A stabilized cognitive research system
     </div>
+  </div>
 
-    <!-- GLYPH ORBIT -->
-    <div id="glyph-orbit">
-      <img src="assets/glyphs/glyph-1.png" data-label="About" />
-      <img src="assets/glyphs/glyph-2.png" data-label="Founder" />
-      <img src="assets/glyphs/glyph-3.png" data-label="Research" />
-      <img src="assets/glyphs/glyph-4.png" data-label="Funding" />
-      <img src="assets/glyphs/glyph-5.png" data-label="Contact" />
-      <img src="assets/glyphs/glyph-6.png" data-label="EchoLex" />
-      <img src="assets/glyphs/glyph-7.png" data-label="IP" />
-      <img src="assets/glyphs/glyph-8.png" data-label="Vault" />
-    </div>
-
-    <!-- MOON PLACEHOLDERS -->
-    <div id="moon-orbit"></div>
-  </main>
+  <!-- GLYPH ORBIT -->
+  <div id="glyph-orbit">
+    <img src="assets/glyphs/glyph1.png" class="glyph" data-section="about" />
+    <img src="assets/glyphs/glyph2.png" class="glyph" data-section="founder" />
+    <img src="assets/glyphs/glyph3.png" class="glyph" data-section="problem" />
+    <img src="assets/glyphs/glyph4.png" class="glyph" data-section="system" />
+    <img src="assets/glyphs/glyph5.png" class="glyph" data-section="progress" />
+    <img src="assets/glyphs/glyph6.png" class="glyph" data-section="vision" />
+    <img src="assets/glyphs/glyph7.png" class="glyph" data-section="funding" />
+    <img src="assets/glyphs/glyph8.png" class="glyph" data-section="contact" />
+  </div>
 
   <!-- OVERLAY -->
-  <div id="overlay">
-    <div class="overlay-content">
-      <div class="overlay-glyph"></div>
-      <div class="overlay-text">
-        <h2 id="overlay-title"></h2>
-        <p>This section contains protected EchoMatrix content.</p>
-      </div>
-      <div id="overlay-close"></div>
+  <div id="overlay" class="hidden">
+    <div id="overlay-bg"></div>
+
+    <div id="overlay-content">
+      <img id="overlay-glyph" />
+      <div id="overlay-text"></div>
     </div>
   </div>
 

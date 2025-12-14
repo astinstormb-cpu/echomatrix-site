@@ -4,42 +4,45 @@
   <meta charset="UTF-8" />
   <title>EchoMatrix</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
 
-  <!-- HEADER -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- LOGO -->
   <header class="header">
-    <div class="brand">
-      <img src="assets/images/logo.png" alt="EchoMatrix Logo" />
-      <div class="brand-text">
+    <div class="logo">
+      <img src="assets/logo.png" alt="EchoMatrix Logo" />
+      <div class="logo-text">
         <h1>EchoMatrix</h1>
         <p>A stable cognitive research system for meaning, emotion, and identity.</p>
       </div>
     </div>
   </header>
 
-  <!-- STARFIELD -->
-  <canvas id="stars"></canvas>
+  <!-- SPACE -->
+  <div id="space">
+    <div id="stars"></div>
 
-  <!-- CENTER SYSTEM -->
-  <div class="system">
-    <div class="core">
-      <div class="roman">XLVIII</div>
+    <!-- CORE -->
+    <div id="core">
+      <div id="xlviii">XLVIII</div>
     </div>
 
-    <div class="orbit" id="orbit"></div>
+    <!-- GLYPHS -->
+    <div id="glyph-layer"></div>
   </div>
 
-  <!-- OVERLAY PANEL -->
-  <div class="overlay" id="overlay">
-    <div class="panel">
-      <button class="close" id="closeOverlay">✕</button>
-      <h2 id="panelTitle"></h2>
-      <div id="panelContent"></div>
+  <!-- MODAL -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <span id="modal-close">✕</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-body"></p>
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="main.js"></script>
+ reopening
 </body>
 </html>
